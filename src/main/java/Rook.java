@@ -29,5 +29,11 @@ public class Rook implements Piece {
         // TODO Auto-generated method stub
         return false;
     }
+
+    @Override
+    public Color getColor() {
+        // TODO Auto-generated method stub
+        return null;
+    }
     
 }
