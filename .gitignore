@@ -72,3 +72,6 @@ buildNumber.properties
 =======
 .DS_Store
 >>>>>>> d8fb60c430cc9f304afd1dd2e67d1218ec62bed0
+
+.DS_Store
+	phase1/.DS_Store
