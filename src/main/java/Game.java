@@ -4,4 +4,6 @@ public class Game {
     public Game() {
         this.board = Piece[8][8];
     }
+    
+    
 }
