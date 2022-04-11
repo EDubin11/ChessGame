@@ -54,7 +54,7 @@ public class Game {
         int endNumber = Character.getNumericValue(endNumChar);
         
         Piece pieceToMove = this.board[startLetter][startNumber];
-        if (!pieceToMove.validMoving()) {
+        if (!pieceToMove.validMoving(start, end)) {
             return false;
         } 
         switch (this.board[startLetter][startNumber].getType()) {
@@ -70,6 +70,8 @@ public class Game {
                 return this.rookValidMove(startLetter, startNumber, endLetter, endNumber, pieceToMove);
             case "Bishop":
                 return this.bishopValidMove(startLetter, startNumber, endLetter, endNumber, pieceToMove);
+            default:
+                return false;
         }
     }
     
@@ -90,7 +92,41 @@ public class Game {
     }
     
     private boolean rookValidMove(int startLetter, int startNumber, int endLetter, int endNumber, Piece piece) {
-        
+        if (startLetter == endLetter) { //Same row
+            if (startNumber < endNumber) {
+                for (int i = startNumber; i < endNumber; i++) {
+                    if (this.board[startLetter][i] != null) {
+                        return false;
+                    }
+                }
+            }
+            else {
+                for (int i = endNumber; i < startNumber; i++) {
+                    if (this.board[startLetter][i] != null) {
+                        return false;
+                    }
+                }
+            }
+        }
+        else {
+            if (startLetter < endLetter) {
+                for (int i = startLetter; i < endLetter; i++) {
+                    if (this.board[i][startNumber] != null) {
+                        return false;
+                    }
+                }
+            }
+            else {
+                for (int i = endLetter; i < startLetter; i++) {
+                    if (this.board[i][startNumber] != null) {
+                        return false;
+                    }
+                }
+            }
+        }
+        if (!piece.differentColor(this.board[endLetter][endNumber])) {
+            return false;
+        }
         return true;
     }
     
