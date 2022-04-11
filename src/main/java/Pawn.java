@@ -20,28 +20,41 @@ public class Pawn implements Piece {
         char d = end.charAt(1);
         int b2 = (int)b;
 
-        if (this.getColor == Color.WHITE){
-            if (a2 == 2){
-                
-            
-            
-            }else{
-
-            
-            
-            }
-        
-        
-        
-        
-        }else{
-
+        if ((b2 != a2)){
+            return false;
         }
-        if (Math.abs(a1 - b1) == 2 )
-         if (Math.abs(a1 - b1) > 1 || Math.abs(a2 - b2) > 1){
-             return false;
-         }
-         return true;
+
+        if (this.getColor() == Color.WHITE){
+
+            if (a1 == 2){
+                if ((b1 - a1) == 2){
+                    return true;
+                }
+                return false;
+            }else{
+                if ((b1 - a1) == 1){
+                    return true;
+                }
+                return false;
+            }
+        }else{
+            if (a1 == 7){
+                if ((b1 - a1) == -2){
+                    return true;
+                }
+                return false;
+            }else{
+                if ((b1 - a1) == -1){
+                    return true;
+                }
+                return false;
+            }
+        }
+        // if (Math.abs(a1 - b1) == 2 )
+        //  if (Math.abs(a1 - b1) > 1 || Math.abs(a2 - b2) > 1){
+        //      return false;
+        //  }
+        //  return true;
     }
 
 
