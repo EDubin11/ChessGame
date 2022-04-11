@@ -13,19 +13,22 @@ public class Rook implements Piece {
         int a1 = (int)a - 65;
         char b = start.charAt(1);
         int a2 = (int)b;
-
-
         
+        
+        char c = end.charAt(0);
+        int b1 = (int)a - 65;
+        char d = end.charAt(1);
+        int b2 = (int)b;
+
+        if ((a1 != b1) && (a2 != b2)) {
+            return false;
+        }
+
 
         // TODO Auto-generated method stub
         return false;
     }
 
-    @Override
-    public boolean validAttack(String start, String end) {
-        // TODO Auto-generated method stub
-        return false;
-    }
 
     @Override
     public Color getColor() {

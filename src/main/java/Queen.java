@@ -12,11 +12,6 @@ public class Queen implements Piece {
         return false;
     }
 
-    @Override
-    public boolean validAttack(String start, String end) {
-        // TODO Auto-generated method stub
-        return false;
-    }
 
     @Override
     public Color getColor() {

@@ -13,16 +13,17 @@ public class Bishop implements Piece {
         return false;
     }
 
-    @Override
-    public boolean validAttack(String start, String end) {
-        // TODO Auto-generated method stub
-        return false;
-    }
+
 
     @Override
     public Color getColor() {
         // TODO Auto-generated method stub
         return null;
+    }
+
+    @Override
+    public String getType(){
+        return "Bishop";
     }
     
 }
