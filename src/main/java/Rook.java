@@ -6,8 +6,8 @@ public class Rook implements Piece {
     }
 
     @Override
-    public boolean validMove(String start, String end) {
-        B3 -> [][]
+    public boolean validMoving(String start, String end) {
+        //B3 -> [][]
         
         char a = start.charAt(0);
         int a1 = (int)a - 65;
@@ -26,9 +26,14 @@ public class Rook implements Piece {
 
 
         // TODO Auto-generated method stub
-        return false;
+        return true;
     }
 
+
+    @Override
+    public String getType(){
+        return "Rook";
+    }
 
     @Override
     public Color getColor() {
