@@ -2,6 +2,9 @@ public class Knight implements Piece {
 
     @Override
     public void move(String start, String end) {
+        A2
+
+
         // TODO Auto-generated method stub
         
     }
@@ -20,6 +23,7 @@ public class Knight implements Piece {
 
     @Override
     public boolean validMove(String start, String end) {
+        
         // TODO Auto-generated method stub
         return false;
     }
