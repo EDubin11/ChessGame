@@ -5,10 +5,6 @@ public class King extends Piece {
         this.color = color;
     }
 
-    @Override
-    public boolean differentColor(Piece other) {
-        return false;
-    }
 
     @Override
     public boolean validMoving(String start, String end) {
@@ -35,14 +31,5 @@ public class King extends Piece {
     public String getType(){
         return this.getClass().toString();
     }
-
-<<<<<<< HEAD
-=======
-
-    @Override
-    public Color getColor() {
-        return null;
-    }
->>>>>>> bb98d0a26f2f94661c3ef3ac9b89045700fd370a
     
 }
