@@ -1,4 +1,9 @@
 public class Queen implements Piece {
+    Color color; 
+
+    public Queen(Color color){
+        this.color = color;
+    }
 
     @Override
     public boolean differentColor(Piece other) {

@@ -1,7 +1,11 @@
 import java.lang.Math;
 public class Bishop implements Piece {
+    Color color; 
 
-
+    public Bishop(Color color){
+        // this.queen = new Piece(color);
+        this.color = color;
+    }
 
     @Override
     public boolean differentColor(Piece other) {

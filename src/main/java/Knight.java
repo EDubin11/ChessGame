@@ -1,5 +1,10 @@
 public class Knight implements Piece {
 
+    Color color; 
+    public Knight(Color color){
+        // this.queen = new Piece(color);
+        this.color = color;
+    }
 
     @Override
     public boolean differentColor(Piece other) {

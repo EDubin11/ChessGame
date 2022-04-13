@@ -1,4 +1,11 @@
 public class Rook implements Piece {
+    Color color; 
+    public Rook(Color color){
+        // this.queen = new Piece(color);
+        this.color = color;
+    }
+
+
  @Override
     public boolean differentColor(Piece other) {
         // TODO Auto-generated method stub

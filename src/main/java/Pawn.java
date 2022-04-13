@@ -1,5 +1,11 @@
 public class Pawn implements Piece {
 
+    Color color; 
+    public Pawn(Color color){
+        // this.queen = new Piece(color);
+        this.color = color;
+    }
+    
   @Override
     public boolean differentColor(Piece other) {
         // TODO Auto-generated method stub
@@ -50,6 +56,7 @@ public class Pawn implements Piece {
                 return false;
             }
         }
+
         // if (Math.abs(a1 - b1) == 2 )
         //  if (Math.abs(a1 - b1) > 1 || Math.abs(a2 - b2) > 1){
         //      return false;
