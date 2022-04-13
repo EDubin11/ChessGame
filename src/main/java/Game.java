@@ -20,16 +20,14 @@ public class Game {
         this.board[7][0] = new Rook (Color.WHITE);
         this.board[7][1] = new Knight (Color.WHITE);
         this.board[7][2] = new Bishop (Color.WHITE);
-        this.board[7][3] = new Queen (Color.WHITE);
-        this.board[7][4] = new King (Color.WHITE);
+        this.board[7][3] = new King (Color.WHITE);
+        this.board[7][4] = new Queen (Color.WHITE);
         this.board[7][5] = new Bishop (Color.WHITE);
         this.board[7][6] = new Knight (Color.WHITE);
         this.board[7][7] = new Rook (Color.WHITE);
         for (int i = 0; i < 8; i++) {
             this.board[7][i] = new Pawn(Color.WHITE);
         }
-        
-        
     }
     
     
