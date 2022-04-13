@@ -157,7 +157,7 @@ public class Game {
     }
     
     private boolean bishopValidMove(int startLetter, int startNumber, int endLetter, int endNumber, Piece piece) {
-        
+        // if (start)
         return true;
     }
     
