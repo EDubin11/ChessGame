@@ -26,7 +26,7 @@ public class Game {
         this.board[7][6] = new Knight (Color.WHITE);
         this.board[7][7] = new Rook (Color.WHITE);
         for (int i = 0; i < 8; i++) {
-            this.board[7][i] = new Pawn(Color.WHITE);
+            this.board[6][i] = new Pawn(Color.WHITE);
         }
     }
     
@@ -157,6 +157,7 @@ public class Game {
     }
     
     private boolean bishopValidMove(int startLetter, int startNumber, int endLetter, int endNumber, Piece piece) {
+        
         return true;
     }
     
@@ -173,14 +174,14 @@ public class Game {
                     System.out.print(this.board[i][j].getType() + ": " +  this.board[i][j].getColor());
                 }
                 else {
-                    System.out.print("       ");
+                    System.out.print("                ");
                 }
                 if (j != this.board[i].length - 1) {
                     System.out.print("|");
                 }
             }
             System.out.println();
-            System.out.println("-----------------------------------------------------------------");
+            System.out.println("-----------------------------------------------");
         }
     }
 }
