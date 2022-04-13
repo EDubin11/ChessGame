@@ -5,18 +5,42 @@ public class Game {
     
     public Game() {
         this.board = new Piece[8][8];
+        this.board[1][1] = new Rook (Color.BLACK);
+        this.board[1][2] = new Knight (Color.BLACK);
+        this.board[1][3] = new Bishop (Color.BLACK);
+        this.board[1][4] = new Queen (Color.BLACK);
+        this.board[1][5] = new King (Color.BLACK);
+        this.board[1][6] = new Bishop (Color.BLACK);
+        this.board[1][7] = new Knight (Color.BLACK);
+        this.board[1][8] = new Rook (Color.BLACK);
+        for (int i = 0; i < 8; i++) {
+            this.board[2][i] = new Pawn(Color.BLACK);
+        }
+        
+        this.board[8][1] = new Rook (Color.WHITE);
+        this.board[8][2] = new Knight (Color.WHITE);
+        this.board[8][3] = new Bishop (Color.WHITE);
+        this.board[8][4] = new Queen (Color.WHITE);
+        this.board[8][5] = new King (Color.WHITE);
+        this.board[8][6] = new Bishop (Color.WHITE);
+        this.board[8][7] = new Knight (Color.WHITE);
+        this.board[8][8] = new Rook (Color.WHITE);
+        for (int i = 0; i < 8; i++) {
+            this.board[7][i] = new Pawn(Color.WHITE);
+        }
+        
+        
     }
+    
+    
     
     public static void main(String[] args) {
         Scanner keyboard = new Scanner(System.in);
         Game game = new Game();
-        game.printBoard();
+        // game.printBoard();
         while (true) {
             System.out.println("Enter move: ");
-            String move = "";
-            while (keyboard.hasNext()) {
-                move += keyboard.next();
-            }
+            String move = keyboard.nextLine();
             while (move.length() != 8) {
                 System.out.println("Invalid move entered. Enter move: ");
                 move = keyboard.next();
@@ -26,7 +50,7 @@ public class Game {
                 move = keyboard.next();
             }
             game.move(move);
-            game.printBoard();
+            // game.printBoard();
         }
         
         
