@@ -1,4 +1,4 @@
-public class Rook implements Piece {
+public class Rook extends Piece {
     Color color; 
     public Rook(Color color){
         // this.queen = new Piece(color);
@@ -17,15 +17,15 @@ public class Rook implements Piece {
         //B3 -> [][]
         
         char a = start.charAt(0);
-        int a1 = (int)a - 65;
-        char b = start.charAt(1);
-        int a2 = (int)b;
-        
-        
-        char c = end.charAt(0);
-        int b1 = (int)a - 65;
-        char d = end.charAt(1);
-        int b2 = (int)b;
+       int a1 = (int)a - 65;
+       char b = start.charAt(1);
+       int a2 = (int)b -1;
+       
+       
+       char c = end.charAt(0);
+       int b1 = (int)a - 65;
+       char d = end.charAt(1);
+       int b2 = (int)b -1;
 
         if ((a1 != b1) && (a2 != b2)) {
             return false;
@@ -39,7 +39,7 @@ public class Rook implements Piece {
 
     @Override
     public String getType(){
-        return "Rook";
+        return this.getClass().toString();
     }
 
     @Override

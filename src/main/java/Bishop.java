@@ -1,5 +1,5 @@
 import java.lang.Math;
-public class Bishop implements Piece {
+public class Bishop extends Piece {
     Color color; 
 
     public Bishop(Color color){
@@ -20,13 +20,13 @@ public class Bishop implements Piece {
        char a = start.charAt(0);
        int a1 = (int)a - 65;
        char b = start.charAt(1);
-       int a2 = (int)b;
+       int a2 = (int)b -1;
        
        
        char c = end.charAt(0);
        int b1 = (int)a - 65;
        char d = end.charAt(1);
-       int b2 = (int)b;
+       int b2 = (int)b -1;
 
        if (Math.abs(a1 - b1) != Math.abs(a2 - b2)) {
            return false;
@@ -46,7 +46,7 @@ public class Bishop implements Piece {
 
     @Override
     public String getType(){
-        return "Bishop";
+        return this.getClass().toString();
     }
     
 }
