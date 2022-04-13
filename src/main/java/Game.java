@@ -12,9 +12,9 @@ public class Game {
         Game game = new Game();
         while (true) {
             System.out.println("Enter move: ");
-            String move = "";
+            String move = keyboard.next();
             while (keyboard.hasNext()) {
-                move += keyboard.next();
+                move += " " + keyboard.next();
             }
             while (move.length() != 8) {
                 System.out.println("Invalid move entered. Enter move: ");
