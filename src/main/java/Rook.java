@@ -5,6 +5,13 @@ public class Rook extends Piece {
     }
 
 
+<<<<<<< HEAD
+=======
+ @Override
+    public boolean differentColor(Piece other) {
+        return false;
+    }
+>>>>>>> bb98d0a26f2f94661c3ef3ac9b89045700fd370a
 
     @Override
     public boolean validMoving(String start, String end) {
@@ -24,9 +31,6 @@ public class Rook extends Piece {
         if ((a1 != b1) && (a2 != b2)) {
             return false;
         }
-
-
-        // TODO Auto-generated method stub
         return true;
     }
 
@@ -35,4 +39,12 @@ public class Rook extends Piece {
         return this.getClass().toString();
     }
 
+<<<<<<< HEAD
+=======
+    @Override
+    public Color getColor() {
+        return null;
+    }
+    
+>>>>>>> bb98d0a26f2f94661c3ef3ac9b89045700fd370a
 }
