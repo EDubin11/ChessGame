@@ -5,13 +5,6 @@ public class Pawn extends Piece {
         this.color = color;
     }
 
-<<<<<<< HEAD
-=======
-  @Override
-    public boolean differentColor(Piece other) {
-        return false;
-    }
->>>>>>> bb98d0a26f2f94661c3ef3ac9b89045700fd370a
 
     @Override
     public boolean validMoving(String start, String end) {//not done. has to factor direction in. and for jumping 2
@@ -67,13 +60,5 @@ public class Pawn extends Piece {
     public String getType(){
         return this.getClass().toString();
     }
-<<<<<<< HEAD
-=======
-
-    @Override
-    public Color getColor() {
-        return null;
-    }
->>>>>>> bb98d0a26f2f94661c3ef3ac9b89045700fd370a
     
 }
