@@ -1,4 +1,4 @@
-public class Queen implements Piece {
+public class Queen extends Piece {
     Color color; 
 
     public Queen(Color color){
@@ -19,13 +19,13 @@ public class Queen implements Piece {
         char a = start.charAt(0);
         int a1 = (int)a - 65;
         char b = start.charAt(1);
-        int a2 = (int)b;
+        int a2 = (int)b -1;
         
         
         char c = end.charAt(0);
         int b1 = (int)a - 65;
         char d = end.charAt(1);
-        int b2 = (int)b;
+        int b2 = (int)b -1;
 
         if ((a1 != b1) && (a2 != b2)) {
             return true;
@@ -48,7 +48,7 @@ public class Queen implements Piece {
 
     @Override
     public String getType(){
-        return "Queen";
+        return this.getClass().toString();
     }
 
     @Override
