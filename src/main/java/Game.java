@@ -10,6 +10,7 @@ public class Game {
     public static void main(String[] args) {
         Scanner keyboard = new Scanner(System.in);
         Game game = new Game();
+        game.printBoard();
         while (true) {
             System.out.println("Enter move: ");
             String move = keyboard.next();
