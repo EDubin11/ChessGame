@@ -31,6 +31,10 @@ public class Knight extends Piece {
     }
 
 
+    public Color getColor(){
+        return this.color;
+    }
+    
     public String getType(){
         return this.getClass().toString();
     }

@@ -27,6 +27,9 @@ public class Rook extends Piece {
         return true;
     }
 
+    public Color getColor(){
+        return this.color;
+    }
 
     public String getType(){
         return this.getClass().toString();

@@ -7,6 +7,7 @@ public abstract class Piece {
     Color getColor(){
         return this.color;
     }
+    
     String getType(){
         return this.getClass().toString();
     }
