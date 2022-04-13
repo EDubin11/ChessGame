@@ -36,9 +36,6 @@ public class Queen extends Piece {
         //     return false;
         // }
 
-
-
-        // // TODO Auto-generated method stub
         // return false;
     }
 

@@ -5,7 +5,6 @@ public class King extends Piece {
         this.color = color;
     }
 
-
     @Override
     public boolean validMoving(String start, String end) {
         //return false;
