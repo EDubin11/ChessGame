@@ -8,7 +8,6 @@ public class Knight implements Piece {
 
     @Override
     public boolean differentColor(Piece other) {
-        // TODO Auto-generated method stub
         return false;
     }
 
@@ -33,7 +32,6 @@ public class Knight implements Piece {
             return false;
         }
 
-        // TODO Auto-generated method stub
         //return false;
     }
 
@@ -44,7 +42,6 @@ public class Knight implements Piece {
 
     @Override
     public Color getColor() {
-        // TODO Auto-generated method stub
         return null;
     }
     

@@ -7,7 +7,6 @@ public class Queen implements Piece {
 
     @Override
     public boolean differentColor(Piece other) {
-        // TODO Auto-generated method stub
         return false;
     }
 
@@ -54,7 +53,6 @@ public class Queen implements Piece {
 
     @Override
     public Color getColor() {
-        // TODO Auto-generated method stub
         return null;
     }
     

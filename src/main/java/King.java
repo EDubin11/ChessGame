@@ -8,13 +8,11 @@ public class King implements Piece {
 
     @Override
     public boolean differentColor(Piece other) {
-        // TODO Auto-generated method stub
         return false;
     }
 
     @Override
     public boolean validMoving(String start, String end) {
-        // TODO Auto-generated method stub
         //return false;
         char a = start.charAt(0);
        int a1 = (int)a - 65;
@@ -41,7 +39,6 @@ public class King implements Piece {
 
     @Override
     public Color getColor() {
-        // TODO Auto-generated method stub
         return null;
     }
     

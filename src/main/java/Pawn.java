@@ -8,13 +8,11 @@ public class Pawn implements Piece {
     
   @Override
     public boolean differentColor(Piece other) {
-        // TODO Auto-generated method stub
         return false;
     }
 
     @Override
     public boolean validMoving(String start, String end) {//not done. has to factor direction in. and for jumping 2
-        // TODO Auto-generated method stub
         char a = start.charAt(0);
         int a1 = (int)a - 65;
         char b = start.charAt(1);
@@ -66,19 +64,16 @@ public class Pawn implements Piece {
 
 
     public boolean validAttack(String start, String end) {
-        // TODO Auto-generated method stub
         return false;
     }
 
     @Override
     public String getType(){
         return this.getClass().toString();
-        "Pawn";
     }
 
     @Override
     public Color getColor() {
-        // TODO Auto-generated method stub
         return null;
     }
     

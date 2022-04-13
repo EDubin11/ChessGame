@@ -8,7 +8,6 @@ public class Rook implements Piece {
 
  @Override
     public boolean differentColor(Piece other) {
-        // TODO Auto-generated method stub
         return false;
     }
 
@@ -30,9 +29,6 @@ public class Rook implements Piece {
         if ((a1 != b1) && (a2 != b2)) {
             return false;
         }
-
-
-        // TODO Auto-generated method stub
         return true;
     }
 
@@ -44,7 +40,6 @@ public class Rook implements Piece {
 
     @Override
     public Color getColor() {
-        // TODO Auto-generated method stub
         return null;
     }
     

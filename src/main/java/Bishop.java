@@ -9,7 +9,6 @@ public class Bishop implements Piece {
 
     @Override
     public boolean differentColor(Piece other) {
-        // TODO Auto-generated method stub
         return false;
     }
 
@@ -40,7 +39,6 @@ public class Bishop implements Piece {
 
     @Override
     public Color getColor() {
-        // TODO Auto-generated method stub
         return null;
     }
 
