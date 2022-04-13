@@ -13,7 +13,10 @@ public class Game {
         game.printBoard();
         while (true) {
             System.out.println("Enter move: ");
-            String move = keyboard.next();
+            String move = "";
+            while (keyboard.hasNext()) {
+                move += keyboard.next();
+            }
             while (move.length() != 8) {
                 System.out.println("Invalid move entered. Enter move: ");
                 move = keyboard.next();
