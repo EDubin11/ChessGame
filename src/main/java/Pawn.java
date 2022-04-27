@@ -53,7 +53,52 @@ public class Pawn extends Piece {
 
 
     public boolean validAttack(String start, String end) {
-        return false;
+        char a = start.charAt(0);
+        int a1 = ((int)a) - 65;
+        char b = start.charAt(1);
+        int a2 = Character.getNumericValue(b) - 1;
+        
+        
+        char c = end.charAt(0);
+        int b1 = ((int)c) - 65;
+        char d = end.charAt(1);
+        int b2 = Character.getNumericValue(d) - 1;
+
+        if (a2 == b2) {
+            return false;
+        }
+        if (Math.abs((a2 - b2) > 1)){
+            return false;
+        }
+        if (this.getColor() == Color.WHITE){
+
+            if (a1 == 1){
+                if ((b1 - a1) == -2){
+                    return true;
+                }
+                return false;
+            }else{
+                if ((b1 - a1) == -1){
+                    return true;
+                }
+                return false;
+            }
+        }else{
+            if (a1 == 6){
+                if ((b1 - a1) == 2){
+                    return true;
+                }
+                return false;
+            }else{
+                if ((b1 - a1) == 1){
+                    return true;
+                }
+                return false;
+            }
+        }
+        
+        
+        return fale;
     }
 
     public Color getColor(){

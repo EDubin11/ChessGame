@@ -43,7 +43,6 @@ public class Game {
     }
     
     
-    
     public static void main(String[] args) {
         Scanner keyboard = new Scanner(System.in);
         Game game = new Game();
@@ -59,13 +58,19 @@ public class Game {
                 System.out.println("Invalid move entered. Enter move: ");
                 move = keyboard.next();
             }
-            game.move(move);
+            
+            Piece pieceAttacked = game.move(move);
+
+            if (game.inCheck(game.whiteTurn)) {
+                game.undoMove(move, pieceAttacked);
+                continue;
+            }
+            game.whiteTurn = !game.whiteTurn;
             game.printBoard();
-        }
-        
+        } 
         
     }
-    public void move(String move) {
+    public Piece move(String move) {
         String start = move.substring(0,2);
         String end = move.substring(6);
         int startLetter = (int)start.charAt(0) - 65;
@@ -84,8 +89,26 @@ public class Game {
                 white.remove(this.board[endLetter][endNumber]);
             }
         }
+        Piece pieceToReturn = null;
+        if (this.board[endLetter][endNumber] != null) {
+            pieceToReturn = this.board[endLetter][endNumber];
+        }
         this.board[startLetter][startNumber] = null;
         this.board[endLetter][endNumber] = pieceToMove;
+        return pieceToReturn;
+    }
+    
+    private void undoMove(String move, Piece pieceAttacked) {
+        String start = move.substring(0,2);
+        String end = move.substring(6);
+        int startLetter = (int)start.charAt(0) - 65;
+        Character startNumChar = start.charAt(1);
+        int startNumber = Character.getNumericValue(startNumChar);
+        int endLetter = (int)end.charAt(0) - 65;
+        Character endNumChar = end.charAt(1);
+        int endNumber = Character.getNumericValue(endNumChar);
+        this.board[startLetter][startNumber] = this.board[endLetter][endNumber];
+        this.board[endLetter][endNumber] = pieceAttacked;
     }
     
     
@@ -100,6 +123,7 @@ public class Game {
         int endNumber = Character.getNumericValue(endNumChar) - 1;
         
         Piece pieceToMove = this.board[startLetter][startNumber];
+        
         if (pieceToMove == null){
             return false;
         }
@@ -113,7 +137,7 @@ public class Game {
             }
         }
         if (!pieceToMove.validMoving(start, end)) {
-            if (!(pieceToMove instanceof Pawn){
+            if (!(pieceToMove instanceof Pawn)){
                 if (!(((Pawn) pieceToMove).validAttack(start, end))){
                     return false;
                 }
@@ -157,13 +181,31 @@ public class Game {
     }
     
     private boolean pawnValidMove(int startLetter, int startNumber, int endLetter, int endNumber, Piece piece) {
+        if (!piece.differentColor(this.board[endLetter][endNumber])) {
+            return false;
+        }
         if (piece.getColor() == Color.BLACK){
-            
-
-            
+            if (startLetter - endLetter == 2){
+                if (this.board[startLetter - 1][startNumber] != null || (startNumber != endNumber)){
+                    return false;
+                }
+            }else{
+                if ((startNumber != endNumber) && (this.board[endLetter][endNumber] == null)){
+                    return false;
+                }
+            }  
         }else{
-            
-            
+            if (endLetter - startLetter == 2){
+                if (this.board[startLetter + 1][startNumber] != null || (startNumber != endNumber)){
+                    return false;
+                }
+            }else{
+                if ((startNumber != endNumber) && (this.board[endLetter][endNumber] == null)){
+                    return false;
+                }
+
+            }
+            return true;
 
         }
         if (!piece.differentColor(this.board[endLetter][endNumber])) {
@@ -274,42 +316,43 @@ public class Game {
         return true;
     }
 
-    private boolean isThereCheck(boolean whiteTurn){
+    private boolean inCheck(boolean whiteTurn){
+        Color color;
         List<Piece> otherTeam;
         if (whiteTurn) {
+            color = Color.WHITE;
             otherTeam = this.black;
         }
         else {
+            color = Color.BLACK;
             otherTeam = this.white;
         }
-        for ()
-        
-        return false;
-    }
-    
-    private int kingLocation(boolean whiteTurn) {
-        Color color;
-        if (whiteTurn) {
-            color = Color.WHITE;
-        }
-        else {
-            color = Color.BLACK;
+        int kingLetter = 0;
+        int kingNumber = 0;
+        for (int i = 0; i < this.board.length; i++) {
+            for (int j = 0; j < this.board[i].length; j++) {
+                if (this.board[i][j] != null && this.board[i][j] instanceof King && this.board[i][j].getColor() == color) {
+                    kingLetter = i;
+                    kingNumber = j;
+                }
+            }
         }
         for (int i = 0; i < this.board.length; i++) {
             for (int j = 0; j < this.board[i].length; j++) {
-                if (this.board[i][j] != null && this.board[i][j].getColor() == color) {
-                    return 
+                if (otherTeam.contains(this.board[i][j])) {
+                    char charI = (char)(j + 65);
+                    char charJ = (char)(j + 65);
+                    char charKL = (char)(kingLetter + 65);
+                    char charKN = (char)(kingNumber + 65);
+                    String string = String.valueOf(charI) + String.valueOf(charJ) + String.valueOf(charKL) + String.valueOf(charKN);
+                    if (this.validMove(string)) {
+                        return true;
+                    } 
                 }
-            
             }
         }
+        return false;
     }
-    
-    
-    
-    
-    
-    
     
     private void printBoard() {
         for (int i = 0; i < this.board.length; i++) {

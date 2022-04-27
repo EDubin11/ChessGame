@@ -8,7 +8,6 @@ public class Bishop extends Piece {
 
     @Override
     public boolean validMoving(String start, String end) {
-        // TODO Auto-generated method stub
        // return false;
        char a = start.charAt(0);
        int a1 = ((int)a) - 65;
