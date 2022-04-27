@@ -25,25 +25,25 @@ public class Pawn extends Piece {
 
         if (this.getColor() == Color.WHITE){
 
-            if (a1 == 2){
-                if ((b1 - a1) == 2){
-                    return true;
-                }
-                return false;
-            }else{
-                if ((b1 - a1) == 1){
-                    return true;
-                }
-                return false;
-            }
-        }else{
-            if (a1 == 7){
+            if (a1 == 1){
                 if ((b1 - a1) == -2){
                     return true;
                 }
                 return false;
             }else{
                 if ((b1 - a1) == -1){
+                    return true;
+                }
+                return false;
+            }
+        }else{
+            if (a1 == 6){
+                if ((b1 - a1) == 2){
+                    return true;
+                }
+                return false;
+            }else{
+                if ((b1 - a1) == 1){
                     return true;
                 }
                 return false;
@@ -61,7 +61,7 @@ public class Pawn extends Piece {
     }
     
     public String getType(){
-        return this.getClass().toString();
+        return "Pawn";
     }
 
 }

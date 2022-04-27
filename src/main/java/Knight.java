@@ -36,8 +36,7 @@ public class Knight extends Piece {
     }
     
     public String getType(){
-        return this.getClass().toString();
+        return "Knight";
     }
-
     
 }

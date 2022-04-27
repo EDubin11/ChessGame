@@ -32,7 +32,7 @@ public class King extends Piece {
     }
     
     public String getType(){
-        return this.getClass().toString();
+        return "King";
     }
     
 }

@@ -1,9 +1,17 @@
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Game {
     private Piece[][] board;
+    private List<Piece> white;
+    private List<Piece> black;
+    private boolean whiteTurn;
     
     public Game() {
+        this.whiteTurn = true;
+        this.white = new ArrayList<>();
+        this.black = new ArrayList<>();
         this.board = new Piece[8][8];
         this.board[0][0] = new Rook (Color.BLACK);
         this.board[0][1] = new Knight (Color.BLACK);
@@ -15,6 +23,8 @@ public class Game {
         this.board[0][7] = new Rook (Color.BLACK);
         for (int i = 0; i < 8; i++) {
             this.board[1][i] = new Pawn(Color.BLACK);
+            black.add(this.board[1][i]);
+            black.add((this.board[0][i]));
         }
         
         this.board[7][0] = new Rook (Color.WHITE);
@@ -27,6 +37,8 @@ public class Game {
         this.board[7][7] = new Rook (Color.WHITE);
         for (int i = 0; i < 8; i++) {
             this.board[6][i] = new Pawn(Color.WHITE);
+            white.add(this.board[6][i]);
+            white.add((this.board[7][i]));
         }
     }
     
@@ -48,7 +60,7 @@ public class Game {
                 move = keyboard.next();
             }
             game.move(move);
-            // game.printBoard();
+            game.printBoard();
         }
         
         
@@ -64,6 +76,14 @@ public class Game {
         int endNumber = Character.getNumericValue(endNumChar);
         
         Piece pieceToMove = this.board[startLetter][startNumber];
+        if (this.board[endLetter][endNumber] != null) {
+            Color col = this.board[endLetter][endNumber].getColor();
+            if (col == Color.BLACK) {
+                black.remove(this.board[endLetter][endNumber]);
+            }else {
+                white.remove(this.board[endLetter][endNumber]);
+            }
+        }
         this.board[startLetter][startNumber] = null;
         this.board[endLetter][endNumber] = pieceToMove;
     }
@@ -80,10 +100,31 @@ public class Game {
         int endNumber = Character.getNumericValue(endNumChar) - 1;
         
         Piece pieceToMove = this.board[startLetter][startNumber];
-        if (!pieceToMove.validMoving(start, end)) {
+        if (pieceToMove == null){
             return false;
+        }
+        if (whiteTurn){
+            if (pieceToMove.getColor() != Color.WHITE){
+                return false;
+            }
+        }else{
+            if (pieceToMove.getColor() != Color.BLACK){
+                return false;
+            }
+        }
+        if (!pieceToMove.validMoving(start, end)) {
+            if (!(pieceToMove instanceof Pawn){
+                if (!(((Pawn) pieceToMove).validAttack(start, end))){
+                    return false;
+                }
+            }else{
+                return false;
+            }
         } 
-        switch (this.board[startLetter][startNumber].getType()) {
+        if (!pieceToMove.differentColor(this.board[endLetter][endNumber])) {
+            return false;
+        }
+        switch (pieceToMove.getType()) {
             case "King":
                 return this.kingValidMove(startLetter, startNumber, endLetter, endNumber, pieceToMove);
             case "Knight":
@@ -102,22 +143,49 @@ public class Game {
     }
     
     private boolean kingValidMove(int startLetter, int startNumber, int endLetter, int endNumber, Piece piece) {
+        if (!piece.differentColor(this.board[endLetter][endNumber])) {
+            return false;
+        }
         return true;
     }
     
     private boolean knightValidMove(int startLetter, int startNumber, int endLetter, int endNumber, Piece piece) {
+        if (!piece.differentColor(this.board[endLetter][endNumber])) {
+            return false;
+        }
         return true;
     }
     
     private boolean pawnValidMove(int startLetter, int startNumber, int endLetter, int endNumber, Piece piece) {
+        if (piece.getColor() == Color.BLACK){
+            
+
+            
+        }else{
+            
+            
+
+        }
+        if (!piece.differentColor(this.board[endLetter][endNumber])) {
+            return false;
+        }
         return true;
     }
     
     private boolean queenValidMove(int startLetter, int startNumber, int endLetter, int endNumber, Piece piece) {
+        if (!piece.differentColor(this.board[endLetter][endNumber])) {
+            return false;
+        }
+        if (!this.rookValidMove(startLetter, startNumber, endLetter, endNumber, piece) && !this.bishopValidMove(startLetter, startNumber, endLetter, endNumber, piece)) {
+            return false;
+        }
         return true;
     }
     
     private boolean rookValidMove(int startLetter, int startNumber, int endLetter, int endNumber, Piece piece) {
+        if (!piece.differentColor(this.board[endLetter][endNumber])) {
+            return false;
+        }
         if (startLetter == endLetter) { //Same row
             if (startNumber < endNumber) {
                 for (int i = startNumber; i < endNumber; i++) {
@@ -150,15 +218,91 @@ public class Game {
                 }
             }
         }
-        if (!piece.differentColor(this.board[endLetter][endNumber])) {
-            return false;
-        }
         return true;
     }
     
     private boolean bishopValidMove(int startLetter, int startNumber, int endLetter, int endNumber, Piece piece) {
-        // if (start)
+        if (!piece.differentColor(this.board[endLetter][endNumber])) {
+            return false;
+        }
+        int letter = startLetter;
+        int number = startNumber;
+        if (startLetter < endLetter && startNumber < endNumber) {
+            letter++;
+            number++;
+            while (letter < endLetter) {
+                if (this.board[letter][number] != null) {
+                    return false;
+                }
+                letter++;
+                number++;
+            }
+        }
+        else if (startLetter < endLetter && startNumber > endNumber) {
+            letter++;
+            number--;
+            while (letter < endLetter) {
+                if (this.board[letter][number] != null) {
+                    return false;
+                }
+                letter++;
+                number--;
+            }
+        }
+        else if (startLetter > endLetter && startNumber > endNumber) {
+            letter--;
+            number--;
+            while (letter < endLetter) {
+                if (this.board[letter][number] != null) {
+                    return false;
+                }
+                letter--;
+                number--;
+            }
+        }
+        else if (startLetter > endLetter && startNumber < endNumber) {
+            letter--;
+            number++;
+            while (letter < endLetter) {
+                if (this.board[letter][number] != null) {
+                    return false;
+                }
+                letter--;
+                number++;
+            }
+        }
         return true;
+    }
+
+    private boolean isThereCheck(boolean whiteTurn){
+        List<Piece> otherTeam;
+        if (whiteTurn) {
+            otherTeam = this.black;
+        }
+        else {
+            otherTeam = this.white;
+        }
+        for ()
+        
+        return false;
+    }
+    
+    private int kingLocation(boolean whiteTurn) {
+        Color color;
+        if (whiteTurn) {
+            color = Color.WHITE;
+        }
+        else {
+            color = Color.BLACK;
+        }
+        for (int i = 0; i < this.board.length; i++) {
+            for (int j = 0; j < this.board[i].length; j++) {
+                if (this.board[i][j] != null && this.board[i][j].getColor() == color) {
+                    return 
+                }
+            
+            }
+        }
     }
     
     

@@ -32,7 +32,7 @@ public class Rook extends Piece {
     }
 
     public String getType(){
-        return this.getClass().toString();
+        return "Rook";
     }
 
 

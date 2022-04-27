@@ -34,7 +34,7 @@ public class Bishop extends Piece {
     }
 
     public String getType(){
-        return this.getClass().toString();
+        return "Bishop";
     }
     
 }

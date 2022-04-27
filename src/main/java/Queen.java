@@ -44,7 +44,7 @@ public class Queen extends Piece {
     }
     
     public String getType(){
-        return this.getClass().toString();
+        return "Queen";
     }
 
 }
