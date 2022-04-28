@@ -67,7 +67,7 @@ public class Pawn extends Piece {
         if (a2 == b2) {
             return false;
         }
-        if (Math.abs((a2 - b2) > 1)){
+        if(Math.abs(a2 - b2) > 1) {
             return false;
         }
         if (this.getColor() == Color.WHITE){
@@ -96,9 +96,6 @@ public class Pawn extends Piece {
                 return false;
             }
         }
-        
-        
-        return fale;
     }
 
     public Color getColor(){

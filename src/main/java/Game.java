@@ -47,7 +47,7 @@ public class Game {
         Scanner keyboard = new Scanner(System.in);
         Game game = new Game();
         game.printBoard();
-        while (true) {
+        while (!game.checkMate()) {
             System.out.println("Enter move: ");
             String move = keyboard.nextLine();
             while (move.length() != 8) {
@@ -68,6 +68,7 @@ public class Game {
             game.whiteTurn = !game.whiteTurn;
             game.printBoard();
         } 
+        keyboard.close();
         
     }
     public Piece move(String move) {
@@ -352,6 +353,10 @@ public class Game {
             }
         }
         return false;
+    }
+    
+    private boolean checkMate () {
+        return true;
     }
     
     private void printBoard() {
