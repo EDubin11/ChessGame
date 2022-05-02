@@ -379,6 +379,9 @@ public class Game {
     }
     
     private boolean checkMate () {
+        if (!inCheck(whiteTurn)){
+            return false;
+        }
         boolean temp;
         Color color;
         List<Piece> thisTeam;
