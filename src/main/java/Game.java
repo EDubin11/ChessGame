@@ -61,12 +61,21 @@ public class Game {
                 return;
             }
             while (move.length() != 8) {
+<<<<<<< HEAD
                 System.out.println("Invalid move entered. " + "Type " + "\"" + "END" + "\"" +" or Enter move: ");
                 move = keyboard.next();
             }
             while (!game.validMove(move)) {
                 System.out.println("Invalid move entered. " + "Type " + "\"" + "END" + "\"" +" or Enter move: ");
                 move = keyboard.next();
+=======
+                System.out.println("Invalid move entered. Enter move: ");
+                move = keyboard.nextLine();
+            }
+            while (!game.validMove(move)) {
+                System.out.println("Invalid move entered. Enter move: ");
+                move = keyboard.nextLine();
+>>>>>>> 43225f048a86a08ba2f6b9a11db90057bf7c3256
             }
             
             Piece pieceAttacked = game.move(move);
@@ -207,7 +216,11 @@ public class Game {
                 if (this.board[startLetter - 1][startNumber] != null || (startNumber != endNumber)){
                     return false;
                 }
-            }else{
+            }
+            else if (startNumber == endNumber && this.board[endLetter][endNumber] != null) {
+                return false;
+            }
+            else{
                 if ((startNumber != endNumber) && (this.board[endLetter][endNumber] == null)){
                     return false;
                 }
@@ -217,12 +230,14 @@ public class Game {
                 if (this.board[startLetter + 1][startNumber] != null || (startNumber != endNumber)){
                     return false;
                 }
-            }else{
-                if ((startNumber != endNumber) && (this.board[endLetter][endNumber] == null)){
-                    return false;
-                }
-
+            } 
+            else if (startNumber == endNumber && this.board[endLetter][endNumber] != null) {
+                return false;
             }
+            else if ((startNumber != endNumber) && (this.board[endLetter][endNumber] == null)){
+                    return false;
+            }
+
             return true;
 
         }
@@ -412,16 +427,31 @@ public class Game {
     }
     
     private void printBoard() {
+        System.out.print("   ");
         for (int i = 0; i < this.board.length; i++) {
+            int toP = i + 1;    
+            System.out.printf("%10s", toP);
+            System.out.printf("%9s", " ");
+        }
+        System.out.println();
+        for (int i = 0; i < this.board.length; i++) {
+            System.out.print((char)((i + 65)) + "   ");
             for (int j = 0; j < this.board[i].length; j++) {
+<<<<<<< HEAD
                 int toP = j + 1;
                 
                 //System.out.print(toP + "     ");
+=======
+>>>>>>> 43225f048a86a08ba2f6b9a11db90057bf7c3256
                 if (this.board[i][j] != null) {
-                    System.out.print(this.board[i][j].getType() + ": " +  this.board[i][j].getColor());
+                    String str = this.board[i][j].getType() + ": " +  this.board[i][j].getColor();
+                    int in = (20 - str.length()) / 2;
+                    String ins = "%" + in + "s";
+                    System.out.printf(ins, this.board[i][j].getType() + ": " +  this.board[i][j].getColor());
+                    System.out.printf(ins, " ");
                 }
                 else {
-                    System.out.print("                ");
+                    System.out.printf("%20s", " ");
                 }
                 if (j != this.board[i].length - 1) {
                     System.out.print("|");
