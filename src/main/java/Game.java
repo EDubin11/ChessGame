@@ -76,10 +76,10 @@ public class Game {
         String end = move.substring(6);
         int startLetter = (int)start.charAt(0) - 65;
         Character startNumChar = start.charAt(1);
-        int startNumber = Character.getNumericValue(startNumChar);
+        int startNumber = Character.getNumericValue(startNumChar) - 1;
         int endLetter = (int)end.charAt(0) - 65;
         Character endNumChar = end.charAt(1);
-        int endNumber = Character.getNumericValue(endNumChar);
+        int endNumber = Character.getNumericValue(endNumChar) - 1;
         
         Piece pieceToMove = this.board[startLetter][startNumber];
         if (this.board[endLetter][endNumber] != null) {
@@ -338,14 +338,14 @@ public class Game {
                 }
             }
         }
+        char charKL = (char)(kingLetter + 65);
+        char charKN = (char)((kingNumber + 1) + '0');
         for (int i = 0; i < this.board.length; i++) {
             for (int j = 0; j < this.board[i].length; j++) {
                 if (otherTeam.contains(this.board[i][j])) {
                     char charI = (char)(j + 65);
-                    char charJ = (char)(j + 65);
-                    char charKL = (char)(kingLetter + 65);
-                    char charKN = (char)(kingNumber + 65);
-                    String string = String.valueOf(charI) + String.valueOf(charJ) + String.valueOf(charKL) + String.valueOf(charKN);
+                    char charJ = (char)((j + 1) + '0');
+                    String string = String.valueOf(charI) + String.valueOf(charJ) + " to " + String.valueOf(charKL) + String.valueOf(charKN);
                     if (this.validMove(string)) {
                         return true;
                     } 
