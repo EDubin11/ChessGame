@@ -388,6 +388,9 @@ public class Game {
     }
     
     private boolean checkMate () {
+        if (!inCheck(whiteTurn)){
+            return false;
+        }
         boolean temp;
         Color color;
         List<Piece> thisTeam;
@@ -437,12 +440,6 @@ public class Game {
         for (int i = 0; i < this.board.length; i++) {
             System.out.print((char)((i + 65)) + "   ");
             for (int j = 0; j < this.board[i].length; j++) {
-<<<<<<< HEAD
-                int toP = j + 1;
-                
-                //System.out.print(toP + "     ");
-=======
->>>>>>> 43225f048a86a08ba2f6b9a11db90057bf7c3256
                 if (this.board[i][j] != null) {
                     String str = this.board[i][j].getType() + ": " +  this.board[i][j].getColor();
                     int in = (20 - str.length()) / 2;
