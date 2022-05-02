@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
+import java.util.Scanner;  
 
 public class Game {
     private Piece[][] board;
@@ -138,7 +138,7 @@ public class Game {
             }
         }
         if (!pieceToMove.validMoving(start, end)) {
-            if (!(pieceToMove instanceof Pawn)){
+            if ((pieceToMove instanceof Pawn)){
                 if (!(((Pawn) pieceToMove).validAttack(start, end))){
                     return false;
                 }
@@ -356,12 +356,15 @@ public class Game {
     }
     
     private boolean checkMate () {
-        return true;
+        return false;
     }
     
     private void printBoard() {
         for (int i = 0; i < this.board.length; i++) {
             for (int j = 0; j < this.board[i].length; j++) {
+                int toP = j + 1;
+                
+                System.out.print(toP + "     ");
                 if (this.board[i][j] != null) {
                     System.out.print(this.board[i][j].getType() + ": " +  this.board[i][j].getColor());
                 }

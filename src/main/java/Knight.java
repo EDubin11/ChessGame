@@ -11,8 +11,7 @@ public class Knight extends Piece {
         char a = start.charAt(0);
         int a1 = ((int)a) - 65;
         char b = start.charAt(1);
-        int a2 = Character.getNumericValue(b) - 1;
-        
+        int a2 = Character.getNumericValue(b) - 1;      
         
         char c = end.charAt(0);
         int b1 = ((int)c) - 65;
@@ -21,13 +20,11 @@ public class Knight extends Piece {
         
         if (Math.abs(a1 - b1) == 1 && Math.abs(a2 - b2) == 2){
             return true;
-        }else if (Math.abs(a1 - b1) == 2 && Math.abs(a2 - b2) == 2){
+        }else if (Math.abs(a1 - b1) == 2 && Math.abs(a2 - b2) == 1){
             return true;
         }else{
             return false;
         }
-
-        //return false;
     }
 
 
