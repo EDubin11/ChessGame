@@ -1,14 +1,17 @@
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;  
+import java.util.Scanner;
+import java.util.Set;  
 
 public class Game {
     private Piece[][] board;
     private List<Piece> white;
     private List<Piece> black;
     private boolean whiteTurn;
+    private Set<String> allMovesSPots;
     
     public Game() {
+        
         this.whiteTurn = true;
         this.white = new ArrayList<>();
         this.black = new ArrayList<>();
