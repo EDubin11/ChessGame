@@ -11,7 +11,7 @@ public class Game {
     private Set<String> allMovesSPots;
     
     public Game() {
-        
+        populateSet();
         this.whiteTurn = true;
         this.white = new ArrayList<>();
         this.black = new ArrayList<>();
@@ -395,6 +395,14 @@ public class Game {
             }
             System.out.println();
             System.out.println("-----------------------------------------------");
+        }
+    }
+
+    private void populateSet(){
+        for (int i = 0; i < this.board.length; i++) {
+            for (int j = 0; j < this.board[i].length; j++) {
+                
+            }
         }
     }
 }
