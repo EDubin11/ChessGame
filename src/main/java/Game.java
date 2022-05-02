@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Scanner;
 import java.util.Set;  
@@ -8,10 +9,9 @@ public class Game {
     private List<Piece> white;
     private List<Piece> black;
     private boolean whiteTurn;
-    private Set<String> allMovesSPots;
+    private Set<String> allMovesSpots;
     
     public Game() {
-        populateSet();
         this.whiteTurn = true;
         this.white = new ArrayList<>();
         this.black = new ArrayList<>();
@@ -43,6 +43,8 @@ public class Game {
             white.add(this.board[6][i]);
             white.add((this.board[7][i]));
         }
+        this.allMovesSpots = new HashSet<>();
+        populateSet();
     }
     
     
@@ -51,14 +53,19 @@ public class Game {
         Game game = new Game();
         game.printBoard();
         while (!game.checkMate()) {
-            System.out.println("Enter move: ");
+            System.out.println("Type " + "\"" + "END" + "\"" +" or Enter move: ");
             String move = keyboard.nextLine();
+            if (move.equals("END")){
+                System.out.println("Game ended. Goodbye. ");
+                keyboard.close();
+                return;
+            }
             while (move.length() != 8) {
-                System.out.println("Invalid move entered. Enter move: ");
+                System.out.println("Invalid move entered. " + "Type " + "\"" + "END" + "\"" +" or Enter move: ");
                 move = keyboard.next();
             }
             while (!game.validMove(move)) {
-                System.out.println("Invalid move entered. Enter move: ");
+                System.out.println("Invalid move entered. " + "Type " + "\"" + "END" + "\"" +" or Enter move: ");
                 move = keyboard.next();
             }
             
@@ -78,6 +85,7 @@ public class Game {
         String start = move.substring(0,2);
         String end = move.substring(6);
         int startLetter = (int)start.charAt(0) - 65;
+        // if (startLetter)
         Character startNumChar = start.charAt(1);
         int startNumber = Character.getNumericValue(startNumChar) - 1;
         int endLetter = (int)end.charAt(0) - 65;
@@ -120,9 +128,15 @@ public class Game {
         String start = move.substring(0,2);
         String end = move.substring(6);
         int startLetter = (int)start.charAt(0) - 65;
+        if (!((int)startLetter > 73) ||  !((int)startLetter < 65)){
+            return false;
+        }
         Character startNumChar = start.charAt(1);
         int startNumber = Character.getNumericValue(startNumChar) - 1;
         int endLetter = (int)end.charAt(0) - 65;
+        if (!((int)endLetter > 73) ||  !((int)startLetter < 65)){
+            return false;
+        }
         Character endNumChar = end.charAt(1);
         int endNumber = Character.getNumericValue(endNumChar) - 1;
         
@@ -346,7 +360,7 @@ public class Game {
         for (int i = 0; i < this.board.length; i++) {
             for (int j = 0; j < this.board[i].length; j++) {
                 if (otherTeam.contains(this.board[i][j])) {
-                    char charI = (char)(j + 65);
+                    char charI = (char)(i + 65);
                     char charJ = (char)((j + 1) + '0');
                     String string = String.valueOf(charI) + String.valueOf(charJ) + " to " + String.valueOf(charKL) + String.valueOf(charKN);
                     if (this.validMove(string)) {
@@ -359,7 +373,42 @@ public class Game {
     }
     
     private boolean checkMate () {
-        return false;
+        boolean temp;
+        Color color;
+        List<Piece> thisTeam;
+        if (whiteTurn) {
+            color = Color.WHITE;
+            thisTeam = this.white;
+        }
+        else {
+            color = Color.BLACK;
+            thisTeam = this.black;
+        }
+        for (int i = 0; i < this.board.length; i++) {
+            for (int j = 0; j < this.board[i].length; j++) {
+                if (thisTeam.contains(this.board[i][j])) {
+                    char charI = (char)(i + 65);
+                    char charJ = (char)((j + 1) + '0');
+                    for (String spot: allMovesSpots){
+                        String string = String.valueOf(charI) + String.valueOf(charJ) + " to " + spot;
+                    if (this.validMove(string)) {
+                        String end = string.substring(6);
+                        int endLetter = (int)end.charAt(0) - 65;
+                        Character endNumChar = end.charAt(1);
+                        int endNumber = Character.getNumericValue(endNumChar);
+                        Piece oldPiece = this.board[endLetter][endNumber];
+                        move(string);
+                        if (!inCheck(whiteTurn)){
+                            undoMove(string, oldPiece);
+                            return false;
+                        }
+                        // return true;
+                    } 
+                    }
+                }
+            }
+        }
+        return true;
     }
     
     private void printBoard() {
@@ -367,7 +416,7 @@ public class Game {
             for (int j = 0; j < this.board[i].length; j++) {
                 int toP = j + 1;
                 
-                System.out.print(toP + "     ");
+                //System.out.print(toP + "     ");
                 if (this.board[i][j] != null) {
                     System.out.print(this.board[i][j].getType() + ": " +  this.board[i][j].getColor());
                 }
@@ -386,7 +435,10 @@ public class Game {
     private void populateSet(){
         for (int i = 0; i < this.board.length; i++) {
             for (int j = 0; j < this.board[i].length; j++) {
-                
+                char charI = (char)(i + 65);
+                char charJ = (char)((j + 1) + '0');
+                String toAdd = String.valueOf(charI) + String.valueOf(charJ);
+                this.allMovesSpots.add(toAdd);
             }
         }
     }
