@@ -61,9 +61,11 @@ public class Game {
                 return;
             }
             if (move.length() != 8) {
+                System.out.print("Invalid move. ");
                 continue;
             }
             if (!game.validMove(move)) {
+                System.out.print("Invalid move. ");
                 continue;
             }
             
@@ -201,8 +203,8 @@ public class Game {
             return false;
         }
         if (piece.getColor() == Color.BLACK){
-            if (startLetter - endLetter == 2){
-                if (this.board[startLetter - 1][startNumber] != null || (startNumber != endNumber)){
+            if (endLetter - startLetter == 2){
+                if (this.board[startLetter + 1][startNumber] != null || (startNumber != endNumber)){
                     return false;
                 }
             }
@@ -215,8 +217,8 @@ public class Game {
                 }
             }  
         }else{
-            if (endLetter - startLetter == 2){
-                if (this.board[startLetter + 1][startNumber] != null || (startNumber != endNumber)){
+            if (startLetter - endLetter == 2){
+                if (this.board[startLetter - 1][startNumber] != null || (startNumber != endNumber)){
                     return false;
                 }
             } 
