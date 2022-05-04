@@ -260,14 +260,14 @@ public class Game {
         }
         if (startLetter == endLetter) { //Same row
             if (startNumber < endNumber) {
-                for (int i = startNumber; i < endNumber; i++) {
+                for (int i = startNumber + 1; i < endNumber - 1; i++) {
                     if (this.board[startLetter][i] != null) {
                         return false;
                     }
                 }
             }
             else {
-                for (int i = endNumber; i < startNumber; i++) {
+                for (int i = endNumber + 1; i < startNumber - 1; i++) {
                     if (this.board[startLetter][i] != null) {
                         return false;
                     }
@@ -276,14 +276,14 @@ public class Game {
         }
         else {
             if (startLetter < endLetter) {
-                for (int i = startLetter; i < endLetter; i++) {
+                for (int i = startLetter + 1; i < endLetter - 1; i++) {
                     if (this.board[i][startNumber] != null) {
                         return false;
                     }
                 }
             }
             else {
-                for (int i = endLetter; i < startLetter; i++) {
+                for (int i = endLetter + 1; i < startLetter - 1; i++) {
                     if (this.board[i][startNumber] != null) {
                         return false;
                     }
@@ -427,7 +427,11 @@ public class Game {
     }
     
     private void printBoard() {
+<<<<<<< HEAD
         //System.out.print("    V  ");
+=======
+        System.out.print("      ");
+>>>>>>> f221b31f7d561e8146d0df799709b91ed7fb1258
         for (int i = 0; i < this.board.length; i++) {
             int toP = i + 1;    
             System.out.printf("%10s", toP);
