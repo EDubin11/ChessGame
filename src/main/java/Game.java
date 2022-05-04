@@ -421,11 +421,11 @@ public class Game {
     }
     
     private void printBoard() {
-        System.out.print("         ");
+        System.out.print("    V  ");
         for (int i = 0; i < this.board.length; i++) {
             int toP = i + 1;    
             System.out.printf("%10s", toP);
-            System.out.printf("%9s", " ");
+            System.out.printf("%11s", " ");
         }
         System.out.println();
         for (int i = 0; i < this.board.length; i++) {
