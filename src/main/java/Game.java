@@ -446,7 +446,10 @@ public class Game {
                 }
             }
             System.out.println();
-            System.out.printf("%120%n", "-");
+            for (int t = 0; t < 121; t++) {
+                System.out.print("-");
+            }
+            System.out.println();
         }
     }
 
