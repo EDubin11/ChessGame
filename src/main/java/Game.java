@@ -60,13 +60,11 @@ public class Game {
                 keyboard.close();
                 return;
             }
-            while (move.length() != 8) {
-                System.out.println("Invalid move entered. " + "Type " + "\"" + "END" + "\"" +" or Enter move: ");
-                move = keyboard.next();
+            if (move.length() != 8) {
+                continue;
             }
-            while (!game.validMove(move)) {
-                System.out.println("Invalid move entered. " + "Type " + "\"" + "END" + "\"" +" or Enter move: ");
-                move = keyboard.next();
+            if (!game.validMove(move)) {
+                continue;
             }
             
             Piece pieceAttacked = game.move(move);
@@ -421,7 +419,7 @@ public class Game {
     }
     
     private void printBoard() {
-        System.out.print("   ");
+        System.out.print("         ");
         for (int i = 0; i < this.board.length; i++) {
             int toP = i + 1;    
             System.out.printf("%10s", toP);
@@ -433,10 +431,11 @@ public class Game {
             for (int j = 0; j < this.board[i].length; j++) {
                 if (this.board[i][j] != null) {
                     String str = this.board[i][j].getType() + ": " +  this.board[i][j].getColor();
-                    int in = (20 - str.length()) / 2;
-                    String ins = "%" + in + "s";
-                    System.out.printf(ins, this.board[i][j].getType() + ": " +  this.board[i][j].getColor());
-                    System.out.printf(ins, " ");
+                    double before = Math.ceil((20.0 - str.length()) / 2);
+                    double after = Math.floor((20.0 - str.length()) / 2);
+                    System.out.printf("%" + before + "s", " ");
+                    System.out.print(this.board[i][j].getType() + ": " +  this.board[i][j].getColor());
+                    System.out.printf("%" + after + "s", " ");
                 }
                 else {
                     System.out.printf("%20s", " ");
@@ -446,7 +445,7 @@ public class Game {
                 }
             }
             System.out.println();
-            for (int t = 0; t < 121; t++) {
+            for (int t = 0; t < 171; t++) {
                 System.out.print("-");
             }
             System.out.println();
