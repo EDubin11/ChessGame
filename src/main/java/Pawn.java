@@ -29,6 +29,9 @@ public class Pawn extends Piece {
                 if ((b1 - a1) == -2){
                     return true;
                 }
+                if ((b1 - a1) == 1){
+                    return true;
+                }
                 return false;
             }else{
                 if ((b1 - a1) == -1){
@@ -39,6 +42,9 @@ public class Pawn extends Piece {
         }else{
             if (a1 == 1){
                 if ((b1 - a1) == 2){
+                    return true;
+                }
+                if ((b1 - a1) == 1){
                     return true;
                 }
                 return false;

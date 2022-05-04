@@ -210,7 +210,7 @@ public class Game {
         }
         if (piece.getColor() == Color.BLACK){
             if (endLetter - startLetter == 2){
-                if (this.board[startLetter + 1][startNumber] != null || (startNumber != endNumber)){
+                if (this.board[startLetter + 1][startNumber] != null || (startNumber != endNumber) || this.board[endLetter][endNumber] != null){
                     return false;
                 }
             }
@@ -224,7 +224,7 @@ public class Game {
             }  
         }else{
             if (startLetter - endLetter == 2){
-                if (this.board[startLetter - 1][startNumber] != null || (startNumber != endNumber)){
+                if (this.board[startLetter - 1][startNumber] != null || (startNumber != endNumber) || this.board[endLetter][endNumber] != null){
                     return false;
                 }
             } 
@@ -427,7 +427,7 @@ public class Game {
     }
     
     private void printBoard() {
-        System.out.print("    V  ");
+        //System.out.print("    V  ");
         for (int i = 0; i < this.board.length; i++) {
             int toP = i + 1;    
             System.out.printf("%10s", toP);
