@@ -53,6 +53,12 @@ public class Game {
         Game game = new Game();
         game.printBoard();
         while (!game.checkMate()) {
+            if (game.whiteTurn) {
+                System.out.println("White to move");
+            }
+            else {
+                System.out.println("Black to move");
+            }
             System.out.println("Type " + "\"" + "END" + "\"" +" or Enter move: ");
             String move = keyboard.nextLine();
             if (move.equals("END")){
