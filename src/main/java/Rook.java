@@ -8,8 +8,6 @@ public class Rook extends Piece {
 
     @Override
     public boolean validMoving(String start, String end) {
-        //B3 -> [][]
-        
         char a = start.charAt(0);
         int a1 = ((int)a) - 65;
         char b = start.charAt(1);
