@@ -128,7 +128,7 @@ public class Game {
         String start = move.substring(0,2);
         String end = move.substring(6);
         int startLetter = (int)start.charAt(0) - 65;
-        if (!((int)startLetter > 73) ||  !((int)startLetter < 65)){
+        if (((int)startLetter > 73) ||  ((int)startLetter < 65)){
             return false;
         }
         Character startNumChar = start.charAt(1);
