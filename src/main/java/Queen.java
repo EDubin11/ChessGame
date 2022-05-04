@@ -10,7 +10,7 @@ public class Queen extends Piece {
     @Override
     public boolean validMoving(String start, String end) {
         // if (Rook.validMoving(start, end) || Bishop.validMoving(start, end)) {
-        //     return truel;
+        //     return true;
         // }
 
         char a = start.charAt(0);
@@ -24,13 +24,22 @@ public class Queen extends Piece {
         char d = end.charAt(1);
         int b2 = Character.getNumericValue(d) - 1;
 
-        if ((a1 != b1) && (a2 != b2)) {
-            return true;
-        }else if (Math.abs(a1 - b1) == Math.abs(a2 - b2)){
-            return true;
-        }else{
-            return false;
+        if (Math.abs(a1 - b1) != Math.abs(a2 - b2)) {
+            if ((a1 != b1) && (a2 != b2)) {
+                return false;
+            }else{
+                return true;
+            }
         }
+        return true;
+
+        // if ((a1 != b1) && (a2 != b2)) {
+        //     return true;
+        // }else if (Math.abs(a1 - b1) == Math.abs(a2 - b2)){
+        //     return true;
+        // }else{
+        //     return false;
+        // }
 
         // if (Math.abs(a1 - b1) != Math.abs(a2 - b2)) {
         //     return false;
@@ -46,5 +55,6 @@ public class Queen extends Piece {
     public String getType(){
         return "Queen";
     }
+
 
 }
