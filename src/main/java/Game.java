@@ -134,7 +134,7 @@ public class Game {
         Character startNumChar = start.charAt(1);
         int startNumber = Character.getNumericValue(startNumChar) - 1;
         int endLetter = (int)end.charAt(0) - 65;
-        if (!((int)endLetter > 73) ||  !((int)startLetter < 65)){
+        if (((endLetter > 8) ||  ((int)endLetter < 0))){
             return false;
         }
         Character endNumChar = end.charAt(1);
