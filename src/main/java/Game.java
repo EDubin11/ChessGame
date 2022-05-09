@@ -69,7 +69,7 @@ public class Game {
             }
             
             if (!game.validMove(move)) {
-                System.out.print("Invalid move, in check afterwards. ");
+                System.out.print("Invalid move. ");
                 continue;
             }
             
@@ -77,7 +77,7 @@ public class Game {
 
             if (game.inCheck(game.whiteTurn)) {
                 game.undoMove(move, pieceAttacked);
-                System.out.print("Invalid move. ");
+                System.out.print("Invalid move, in check afterwards. ");
                 continue;
             }
             game.whiteTurn = !game.whiteTurn;
