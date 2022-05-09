@@ -423,7 +423,7 @@ public class Game {
                             String end = string.substring(6);
                             int endLetter = (int)end.charAt(0) - 65;
                             Character endNumChar = end.charAt(1);
-                            int endNumber = Character.getNumericValue(endNumChar);
+                            int endNumber = Character.getNumericValue(endNumChar) - 1;
                             Piece oldPiece = this.board[endLetter][endNumber];
                             move(string);
                             if (!inCheck(whiteTurn)){
