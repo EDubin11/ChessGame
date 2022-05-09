@@ -52,7 +52,7 @@ public class Game {
         Scanner keyboard = new Scanner(System.in);
         Game game = new Game();
         game.printBoard();
-        while (!game.checkMate()) {
+        while (true) {
             if (game.whiteTurn) {
                 System.out.println("White to move");
             }
@@ -82,14 +82,14 @@ public class Game {
             game.whiteTurn = !game.whiteTurn;
             game.printBoard();
         } 
-        System.out.print("Game over. Winner: ");
-        if (game.whiteTurn){
-            System.out.println("White.");
-        }else{
-            System.out.println("Black.");
-        }
-        keyboard.close();
-        return;
+        // System.out.print("Game over. Winner: ");
+        // if (game.whiteTurn){
+        //     System.out.println("White.");
+        // }else{
+        //     System.out.println("Black.");
+        // }
+        // keyboard.close();
+        // return;
         
     }
     public Piece move(String move) {
@@ -371,11 +371,13 @@ public class Game {
         }
         int kingLetter = 0;
         int kingNumber = 0;
-        for (int i = 0; i < this.board.length; i++) {
+        outer: for (int i = 0; i < this.board.length; i++) {
             for (int j = 0; j < this.board[i].length; j++) {
+                Piece piece = this.board[i][j];
                 if (this.board[i][j] != null && this.board[i][j] instanceof King && this.board[i][j].getColor() == color) {
                     kingLetter = i;
                     kingNumber = j;
+                    break outer;
                 }
             }
         }
@@ -387,9 +389,12 @@ public class Game {
                     char charI = (char)(i + 65);
                     char charJ = (char)((j + 1) + '0');
                     String string = String.valueOf(charI) + String.valueOf(charJ) + " to " + String.valueOf(charKL) + String.valueOf(charKN);
+                    this.whiteTurn = !this.whiteTurn;
                     if (this.validMove(string)) {
+                        this.whiteTurn = !this.whiteTurn;
                         return true;
                     } 
+                    this.whiteTurn = !this.whiteTurn;
                 }
             }
         }

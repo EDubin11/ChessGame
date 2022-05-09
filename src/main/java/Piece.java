@@ -4,7 +4,7 @@ public abstract class Piece {
         if (other == null){
             return true;
         }
-        return other.getColor() == other.getColor();
+        return this.getColor() != other.getColor();
     }
     abstract boolean validMoving(String start, String end);
     Color getColor(){
