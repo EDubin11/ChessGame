@@ -9,10 +9,6 @@ public class Queen extends Piece {
 
     @Override
     public boolean validMoving(String start, String end) {
-        // if (Rook.validMoving(start, end) || Bishop.validMoving(start, end)) {
-        //     return true;
-        // }
-
         char a = start.charAt(0);
         int a1 = ((int)a) - 65;
         char b = start.charAt(1);
@@ -32,20 +28,6 @@ public class Queen extends Piece {
             }
         }
         return true;
-
-        // if ((a1 != b1) && (a2 != b2)) {
-        //     return true;
-        // }else if (Math.abs(a1 - b1) == Math.abs(a2 - b2)){
-        //     return true;
-        // }else{
-        //     return false;
-        // }
-
-        // if (Math.abs(a1 - b1) != Math.abs(a2 - b2)) {
-        //     return false;
-        // }
-
-        // return false;
     }
 
     public Color getColor(){
