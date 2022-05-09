@@ -52,7 +52,7 @@ public class Game {
         Scanner keyboard = new Scanner(System.in);
         Game game = new Game();
         game.printBoard();
-        while (true) {
+        while (!game.checkMate()) {
             if (game.whiteTurn) {
                 System.out.println("White to move");
             }
@@ -71,7 +71,7 @@ public class Game {
                 continue;
             }
             if (!game.validMove(move)) {
-                System.out.print("Invalid move. ");
+                System.out.print("Invalid move, in check afterwards. ");
                 continue;
             }
             
@@ -79,19 +79,19 @@ public class Game {
 
             if (game.inCheck(game.whiteTurn)) {
                 game.undoMove(move, pieceAttacked);
+                System.out.print("Invalid move. ");
                 continue;
             }
             game.whiteTurn = !game.whiteTurn;
             game.printBoard();
         } 
-        // keyboard.close();
+        keyboard.close();
         
     }
     public Piece move(String move) {
         String start = move.substring(0,2);
         String end = move.substring(6);
         int startLetter = (int)start.charAt(0) - 65;
-        // if (startLetter)
         Character startNumChar = start.charAt(1);
         int startNumber = Character.getNumericValue(startNumChar) - 1;
         int endLetter = (int)end.charAt(0) - 65;
@@ -121,10 +121,10 @@ public class Game {
         String end = move.substring(6);
         int startLetter = (int)start.charAt(0) - 65;
         Character startNumChar = start.charAt(1);
-        int startNumber = Character.getNumericValue(startNumChar);
+        int startNumber = Character.getNumericValue(startNumChar) - 1;
         int endLetter = (int)end.charAt(0) - 65;
         Character endNumChar = end.charAt(1);
-        int endNumber = Character.getNumericValue(endNumChar);
+        int endNumber = Character.getNumericValue(endNumChar) - 1;
         this.board[startLetter][startNumber] = this.board[endLetter][endNumber];
         this.board[endLetter][endNumber] = pieceAttacked;
     }
@@ -260,14 +260,14 @@ public class Game {
         }
         if (startLetter == endLetter) { //Same row
             if (startNumber < endNumber) {
-                for (int i = startNumber + 1; i < endNumber - 1; i++) {
+                for (int i = startNumber + 1; i < endNumber; i++) {
                     if (this.board[startLetter][i] != null) {
                         return false;
                     }
                 }
             }
             else {
-                for (int i = endNumber + 1; i < startNumber - 1; i++) {
+                for (int i = endNumber + 1; i < startNumber; i++) {
                     if (this.board[startLetter][i] != null) {
                         return false;
                     }
@@ -276,14 +276,14 @@ public class Game {
         }
         else {
             if (startLetter < endLetter) {
-                for (int i = startLetter + 1; i < endLetter - 1; i++) {
+                for (int i = startLetter + 1; i < endLetter; i++) {
                     if (this.board[i][startNumber] != null) {
                         return false;
                     }
                 }
             }
             else {
-                for (int i = endLetter + 1; i < startLetter - 1; i++) {
+                for (int i = endLetter + 1; i < startLetter; i++) {
                     if (this.board[i][startNumber] != null) {
                         return false;
                     }
@@ -299,6 +299,9 @@ public class Game {
         }
         int letter = startLetter;
         int number = startNumber;
+        if (startLetter == endLetter || startNumber == endNumber) {
+            return false;
+        }
         if (startLetter < endLetter && startNumber < endNumber) {
             letter++;
             number++;
@@ -411,19 +414,18 @@ public class Game {
                     char charJ = (char)((j + 1) + '0');
                     for (String spot: allMovesSpots){
                         String string = String.valueOf(charI) + String.valueOf(charJ) + " to " + spot;
-                    if (this.validMove(string)) {
-                        String end = string.substring(6);
-                        int endLetter = (int)end.charAt(0) - 65;
-                        Character endNumChar = end.charAt(1);
-                        int endNumber = Character.getNumericValue(endNumChar);
-                        Piece oldPiece = this.board[endLetter][endNumber];
-                        move(string);
-                        if (!inCheck(whiteTurn)){
-                            undoMove(string, oldPiece);
-                            return false;
-                        }
-                        // return true;
-                    } 
+                        if (this.validMove(string)) {
+                            String end = string.substring(6);
+                            int endLetter = (int)end.charAt(0) - 65;
+                            Character endNumChar = end.charAt(1);
+                            int endNumber = Character.getNumericValue(endNumChar);
+                            Piece oldPiece = this.board[endLetter][endNumber];
+                            move(string);
+                            if (!inCheck(whiteTurn)){
+                                undoMove(string, oldPiece);
+                                return false;
+                            }
+                        } 
                     }
                 }
             }
