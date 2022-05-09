@@ -60,16 +60,14 @@ public class Game {
                 System.out.println("Black to move");
             }
             System.out.println("Type " + "\"" + "END" + "\"" +" or Enter move: ");
+            System.out.println("Moves should have 8 characters and be in the form of " + "\"" + "spotA to spotB" + "\"." + " Ex: " + "\"B1 to C1" + "\"");
             String move = keyboard.nextLine();
             if (move.equals("END")){
                 System.out.println("Game ended. Goodbye. ");
                 keyboard.close();
                 return;
             }
-            if (move.length() != 8) {
-                System.out.print("Invalid move. ");
-                continue;
-            }
+            
             if (!game.validMove(move)) {
                 System.out.print("Invalid move. ");
                 continue;
@@ -84,7 +82,14 @@ public class Game {
             game.whiteTurn = !game.whiteTurn;
             game.printBoard();
         } 
+        System.out.print("Game over. Winner: ");
+        if (game.whiteTurn){
+            System.out.println("White.");
+        }else{
+            System.out.println("Black.");
+        }
         keyboard.close();
+        return;
         
     }
     public Piece move(String move) {
@@ -131,6 +136,9 @@ public class Game {
     
     
     public boolean validMove(String move) {
+        if (move.length() != 8) {
+            return false;
+        }
         String start = move.substring(0,2);
         String end = move.substring(6);
         int startLetter = (int)start.charAt(0) - 65;
@@ -145,6 +153,10 @@ public class Game {
         }
         Character endNumChar = end.charAt(1);
         int endNumber = Character.getNumericValue(endNumChar) - 1;
+
+        if (!move.substring(2,3).equals(" ") || !move.substring(5,6).equals(" ") || !move.substring(3,5).equals("to")){
+            return false;
+        }
         
         Piece pieceToMove = this.board[startLetter][startNumber];
         
