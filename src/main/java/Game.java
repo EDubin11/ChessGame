@@ -53,6 +53,7 @@ public class Game {
         Game game = new Game();
         game.printBoard();
         while (!game.checkMate()) {
+            System.out.println("Moves should have 8 characters and be in the form of " + "\"" + "spotA to spotB" + "\"." + " Ex: " + "\"B1 to C1" + "\"");
             if (game.whiteTurn) {
                 System.out.println("White to move");
             }
@@ -60,7 +61,6 @@ public class Game {
                 System.out.println("Black to move");
             }
             System.out.println("Type " + "\"" + "END" + "\"" +" or Enter move: ");
-            System.out.println("Moves should have 8 characters and be in the form of " + "\"" + "spotA to spotB" + "\"." + " Ex: " + "\"B1 to C1" + "\"");
             String move = keyboard.nextLine();
             if (move.equals("END")){
                 System.out.println("Game ended. Goodbye. ");
@@ -83,6 +83,13 @@ public class Game {
             game.whiteTurn = !game.whiteTurn;
             game.printBoard();
         } 
+        System.out.print("Game over. Congratulations to the winner: ");
+        if (game.whiteTurn) {
+            System.out.println("Black");
+        }
+        else {
+            System.out.println("White");
+        }
         keyboard.close();
         
     }
@@ -97,14 +104,14 @@ public class Game {
         int endNumber = Character.getNumericValue(endNumChar) - 1;
         
         Piece pieceToMove = this.board[startLetter][startNumber];
-        if (this.board[endLetter][endNumber] != null) {
-            Color col = this.board[endLetter][endNumber].getColor();
-            if (col == Color.BLACK) {
-                black.remove(this.board[endLetter][endNumber]);
-            }else {
-                white.remove(this.board[endLetter][endNumber]);
-            }
-        }
+        // if (this.board[endLetter][endNumber] != null) {
+        //     Color col = this.board[endLetter][endNumber].getColor();
+        //     if (col == Color.BLACK) {
+        //         black.remove(this.board[endLetter][endNumber]);
+        //     }else {
+        //         white.remove(this.board[endLetter][endNumber]);
+        //     }
+        // }
         Piece pieceToReturn = null;
         if (this.board[endLetter][endNumber] != null) {
             pieceToReturn = this.board[endLetter][endNumber];
@@ -424,12 +431,12 @@ public class Game {
                             int endLetter = (int)end.charAt(0) - 65;
                             Character endNumChar = end.charAt(1);
                             int endNumber = Character.getNumericValue(endNumChar) - 1;
-                            Piece oldPiece = this.board[endLetter][endNumber];
-                            move(string);
+                            Piece oldPiece = move(string);
                             if (!inCheck(whiteTurn)){
                                 undoMove(string, oldPiece);
                                 return false;
                             }
+                            undoMove(string, oldPiece);
                         } 
                     }
                 }
